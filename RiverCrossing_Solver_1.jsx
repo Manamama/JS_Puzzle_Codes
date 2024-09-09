@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 
-// Define the initial and goal states
 const initialState = {
   'Cabbage': 'west',
   'Goat': 'west',
@@ -15,29 +15,24 @@ const goalState = {
   'Farmer': 'east'
 };
 
-// Helper function to check if two states are equal
 const areStatesEqual = (state1, state2) => {
   return JSON.stringify(state1) === JSON.stringify(state2);
 };
 
-// Define the constraints
 const isValid = (state) => {
   if (state['Goat'] === state['Cabbage'] && state['Farmer'] !== state['Goat']) return false;
   if (state['Wolf'] === state['Cabbage'] && state['Farmer'] !== state['Wolf']) return false;
   return true;
 };
 
-// Define the transitions
 const getNextStates = (state) => {
   const nextStates = [];
   const farmerSide = state['Farmer'];
   const oppositeSide = farmerSide === 'west' ? 'east' : 'west';
 
-  // Move farmer alone
   const newState = { ...state, 'Farmer': oppositeSide };
   if (isValid(newState)) nextStates.push(newState);
 
-  // Move farmer with each item
   ['Cabbage', 'Goat', 'Wolf'].forEach(item => {
     if (state[item] === farmerSide) {
       const itemState = { ...state, 'Farmer': oppositeSide, [item]: oppositeSide };
@@ -45,17 +40,11 @@ const getNextStates = (state) => {
     }
   });
 
-  console.log('Current state:', state);
-  console.log('Next states:', nextStates);
-
   return nextStates;
 };
 
-// Backtracking function with basic pruning
 const backtrack = (state, path, visited) => {
-  console.log('Backtracking state:', state);
   if (areStatesEqual(state, goalState)) {
-    console.log('Goal state reached:', path);
     return path;
   }
 
@@ -73,7 +62,6 @@ const backtrack = (state, path, visited) => {
   return null;
 };
 
-// Solve the puzzle
 const solvePuzzle = () => {
   const visited = new Set();
   return backtrack(initialState, [initialState], visited);

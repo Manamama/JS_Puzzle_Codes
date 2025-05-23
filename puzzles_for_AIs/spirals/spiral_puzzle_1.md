@@ -1,15 +1,18 @@
-#Ver. 1.1
+#Ver. 1.2
 Goal : create a spiral out of red element, in a white matrix 5 by 5. 
 
 The target image should be: 
+```
 
 🟥🟥🟥🟥🟥
 🟥⬜⬜⬜⬜
 🟥⬜🟥🟥⬜
 🟥⬜⬜🟥⬜
 🟥🟥🟥🟥⬜
+```
 
-The code should start from the middle and show thus this: 
+The code should start by placing a dot in the middle of the matrix and then show the progress of the spiral as this: 
+```
 ⬜ ⬜ ⬜ ⬜ ⬜
 ⬜ ⬜ ⬜ ⬜ ⬜
 ⬜ ⬜ 🟥 ⬜ ⬜
@@ -40,6 +43,9 @@ The code should start from the middle and show thus this:
 🟥 ⬜ ⬜ 🟥 ⬜
 🟥 🟥 🟥 🟥 ⬜
 
+```
+Notice the white spaces retained by that algorithm: half the resulting shape remains white: there is a red spiral and white spiral at the end. 
+
 
 Now, you have the beginning of  code :
 
@@ -47,9 +53,9 @@ Now, you have the beginning of  code :
     emoji_list = ["🟥", "⬜"]`
 ....
 and the likely end: 
-final_output_red_white_spiral = display_spiral(spiral_matrix)
+`final_output_red_white_spiral = display_spiral(spiral_matrix)`
+
 
 which will display that string variable as final Result. 
 
-
-Good luck!
+Task: create the code that does so. 

@@ -1,5 +1,5 @@
-#Ver. 1.2
-Goal : create a spiral out of red element, in a white matrix 5 by 5. 
+#Ver. 1.3
+Goal : create a a clockwise red spiral, in a white matrix 5 by 5. 
 
 The target image should be: 
 ```

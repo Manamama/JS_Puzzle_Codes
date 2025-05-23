@@ -1,32 +1,38 @@
-def print_spiral(n):
-    emoji_list = ["🟥", "⬜"]
-    matrix = [["⬜" for _ in range(n)] for _ in range(n)]
-    count = 0
-    x, y = n // 2, n // 2  # Starting point at the center
-    step = 1
-    direction = 0
+# ver 2.1 Grok AI and ChatGPT
+def red_spiral(n):
+    grid = [['⬜'] * n for _ in range(n)]
+    x = y = n // 2  # Start from the center
+    grid[y][x] = '🟥'
+    count = 1
+    limit = n * n // 2 + 1  # Fill just over half
+    step = 0
+    direction = 0  # 0:→, 1:↓, 2:←, 3:↑
 
-    while count < n*n/2+1 :
+    def print_grid():
+        for row in grid:
+            print(' '.join(row))
+        print()
+
+    print_grid()
+
+    while count < limit:
         for _ in range(step):
-            matrix[y][x] = emoji_list[0]  # Assign red element to matrix
-            count += 1
+            nx, ny = x, y
+            if direction == 0: nx += 1
+            elif direction == 1: ny += 1
+            elif direction == 2: nx -= 1
+            else: ny -= 1
 
-            if direction == 0:
-                x += 1  # Move right
-            elif direction == 1:
-                y += 1  # Move down
-            elif direction == 2:
-                x -= 1  # Move left
+            if 0 <= nx < n and 0 <= ny < n:
+                x, y = nx, ny
+                grid[y][x] = '🟥'
+                count += 1
             else:
-                y -= 1  # Move up
-        direction = (direction + 1) % 4  # Update direction
-        if direction % 1 == 0:  # Increment step if moving right or left
-            print_matrix(matrix)  # Print intermediate result
-            step += 1
+                print_grid()
+                return
 
-def print_matrix(matrix):
-    for row in matrix:
-        print(" ".join(row))
-    print()
+        print_grid()
+        step += 1
+        direction = (direction + 1) % 4
 
-print_spiral(5)
+red_spiral(5)
